@@ -6,7 +6,11 @@
 
 
 -Header
-Login Form
+-Login Form
+-Header
+-Sign Up Form
+-Form Validation
+-UseRef Hook
 # features
 -Login/Signup
     -Sign In/Sign Up Form
