@@ -11,6 +11,8 @@
 -Sign Up Form
 -Form Validation
 -UseRef Hook
+-Firebase Setup
+
 # features
 -Login/Signup
     -Sign In/Sign Up Form
