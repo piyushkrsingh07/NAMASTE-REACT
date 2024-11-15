@@ -12,7 +12,10 @@
 -Form Validation
 -UseRef Hook
 -Firebase Setup
-
+-Created Signup Account 
+-Implement Sign In User 
+-Impleted ReduxStore
+-Fetch Movies From TMDB Movies 
 # features
 -Login/Signup
     -Sign In/Sign Up Form

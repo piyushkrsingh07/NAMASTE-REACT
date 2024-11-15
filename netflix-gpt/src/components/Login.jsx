@@ -3,14 +3,20 @@ import Header from './Header'
 import {checkValidData} from "../utils/validate"
 // import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../utils/firebase"
 import { Navigate, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addUser } from '../redux/Slices/userSlice';
+import { updateProfile } from 'firebase/auth';
 
 const Login = () => {
     const[IsSignInForm,setIsSignInForm]=useState(true);
     const [errorMessage,seterrorMessage]=useState(null);
     const navigate=useNavigate();
+    // const user=useSelector(store => store.user)
+
+    const dispatch=useDispatch();
 
 
      const email=useRef(null);
@@ -33,6 +39,39 @@ const Login = () => {
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
+    // updateProfile(user, {
+    //   displayName: name.current.value, photoURL: "https://ucarecdn.com/8f16c3ed-dee6-4910-bb19-ec5929d78711/-/preview/100x125/"
+    // })
+    
+    // .then(() => {
+    //   // Profile updated!
+    //   // ...
+     
+    //     const {uid,email,displayName,photoURL} = auth.currentUser;
+    //     dispatch(
+    //       addUser({
+    //         uid:uid,
+    //         email:email,
+    //         displayName:displayName,
+    //         photoURL:photoURL,
+    //       })
+    //     );
+
+
+
+
+
+
+     
+
+    //   navigate("/browse");
+    // })
+    // .catch((error) => {
+    //   // An error occurred
+    //   // ...
+    //   seterrorMessage(error.message)
+    // });
+    
     // ...
     console.log(user)
     navigate("/browse")

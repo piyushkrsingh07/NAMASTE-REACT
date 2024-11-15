@@ -1,6 +1,22 @@
 import React from 'react'
-
+import {signOut } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
+import {auth} from "../utils/firebase"
+import { useSelector } from 'react-redux';
 const Header = () => {
+
+  const navigate=useNavigate();
+  const user=useSelector(store=>store.user);
+const handleSignOut=()=>{
+  signOut(auth).then(() => {
+navigate("/");
+  }).catch((error) => {
+  navigate("/error");
+  });
+  
+}
+
+
   return (
     <div className='absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10  flex justify-between '>
       <img
@@ -9,13 +25,14 @@ const Header = () => {
       alt="LOGO"
       
       />
-      <div className='flex p-2'>
+      {user && (<div className='flex p-2'>
         <img 
         className='w-12 h-12 '
-        src="https://occ-0-6247-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABdpkabKqQAxyWzo6QW_ZnPz1IZLqlmNfK-t4L1VIeV1DY00JhLo_LMVFp936keDxj-V5UELAVJrU--iUUY2MaDxQSSO-0qw.png?r=e6e" alt="" />
+        src={user?.photoURL} alt="" />
      
-      <button>(Sign Out) </button>
+      <button onClick={handleSignOut} className='font-bold text-white'>(Sign Out) </button>
       </div>
+      )}
     </div>
   )
 }
