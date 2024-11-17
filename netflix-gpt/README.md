@@ -19,6 +19,11 @@
 --enable private routing
 -Unsubscribe to onAuthState
 -Fetch Movies From TMDB Movies 
+-   Custom Hook for Now Playing Movies
+-Create movieSlice
+-Updated Store With Movies Data
+-planning for MainContainer & Secondary Container
+-Fetch data for trailer 
 
 -Register TMDB API
 # features
