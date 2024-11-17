@@ -13,9 +13,14 @@
 -UseRef Hook
 -Firebase Setup
 -Created Signup Account 
--Implement Sign In User 
+-Implement Sign In User
+-Implement signout 
 -Impleted ReduxStore
+--enable private routing
+-Unsubscribe to onAuthState
 -Fetch Movies From TMDB Movies 
+
+-Register TMDB API
 # features
 -Login/Signup
     -Sign In/Sign Up Form

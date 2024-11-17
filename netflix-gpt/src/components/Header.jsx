@@ -2,26 +2,60 @@ import React from 'react'
 import {signOut } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import {auth} from "../utils/firebase"
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { onAuthStateChanged } from "firebase/auth";
+import { addUser,removeUser } from '../redux/Slices/userSlice';
+import { useEffect } from 'react';
+import { LOGO } from '../utils/constants';
 const Header = () => {
-
+   const dispatch=useDispatch()
   const navigate=useNavigate();
   const user=useSelector(store=>store.user);
 const handleSignOut=()=>{
   signOut(auth).then(() => {
-navigate("/");
+// navigate("/");
   }).catch((error) => {
   navigate("/error");
   });
   
 }
+useEffect(()=>{
+  const unsubscibe=onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/auth.user
+      const {uid,email,displayName,photoURL} = user;
+      dispatch(addUser({
+        uid:uid,
+        email:email,
+        displayName:displayName,
+        photoURL:photoURL,
+      })
+    );
+      //store m dalne k lye add user to store
+      // ...
+  navigate("/browse")
+    } else {
+      // User is signed out
+      // ...
+      dispatch(removeUser());
+      navigate("/")
+  
+    }
+  });
+//Unsubscribe when component unmount
+  return ()=>unsubscibe();
+},[])
+//hrr brr auth check hoga
+//aese header k andr dlla jo hmesa available
+//component unmount unsubscribe
 
 
   return (
     <div className='absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10  flex justify-between '>
       <img
       className='w-40 h-16'
-      src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
+      src={LOGO}
       alt="LOGO"
       
       />

@@ -9,11 +9,12 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from '../redux/Slices/userSlice';
 import { updateProfile } from 'firebase/auth';
+import {  LOGO, USER_AVATAR } from '../utils/constants';
 
 const Login = () => {
     const[IsSignInForm,setIsSignInForm]=useState(true);
     const [errorMessage,seterrorMessage]=useState(null);
-    const navigate=useNavigate();
+    // const navigate=useNavigate();
     // const user=useSelector(store => store.user)
 
     const dispatch=useDispatch();
@@ -39,23 +40,23 @@ const Login = () => {
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
-    // updateProfile(user, {
-    //   displayName: name.current.value, photoURL: "https://ucarecdn.com/8f16c3ed-dee6-4910-bb19-ec5929d78711/-/preview/100x125/"
-    // })
+    updateProfile(user, {
+      displayName: name.current.value, photoURL:LOGO
+    })
     
-    // .then(() => {
-    //   // Profile updated!
-    //   // ...
+    .then(() => {
+      // Profile updated!
+      // ...
      
-    //     const {uid,email,displayName,photoURL} = auth.currentUser;
-    //     dispatch(
-    //       addUser({
-    //         uid:uid,
-    //         email:email,
-    //         displayName:displayName,
-    //         photoURL:photoURL,
-    //       })
-    //     );
+        const {uid,email,displayName,photoURL} = auth.currentUser;
+        dispatch(
+          addUser({
+            uid:uid,
+            email:email,
+            displayName:displayName,
+            photoURL:photoURL,
+          })
+        );
 
 
 
@@ -64,17 +65,16 @@ const Login = () => {
 
      
 
-    //   navigate("/browse");
-    // })
-    // .catch((error) => {
-    //   // An error occurred
-    //   // ...
-    //   seterrorMessage(error.message)
-    // });
+     
+    })
+    .catch((error) => {
+      // An error occurred
+      // ...
+      seterrorMessage(error.message)
+    });
     
     // ...
-    console.log(user)
-    navigate("/browse")
+  
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -90,7 +90,7 @@ const Login = () => {
           const user = userCredential.user;
           // ...
           console.log(user)
-          navigate("/browse")
+         
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -108,10 +108,10 @@ const Login = () => {
     <div >
        <Header />
        <div className='absolute h-screen w-screen overflow-hidden'>
-       <img src="https://assets.nflxext.com/ffe/siteui/vlv3/fc164b4b-f085-44ee-bb7f-ec7df8539eff/d23a1608-7d90-4da1-93d6-bae2fe60a69b/IN-en-20230814-popsignuptwoweeks-perspective_alpha_website_large.jpg"  alt="" className='h-[600px] w-screen ' />
+       <img src="https://assets.nflxext.com/ffe/siteui/vlv3/fc164b4b-f085-44ee-bb7f-ec7df8539eff/d23a1608-7d90-4da1-93d6-bae2fe60a69b/IN-en-20230814-popsignuptwoweeks-perspective_alpha_website_large.jpg"  alt="" className='h-screen w-screen overflow-x-hidden' />
       
        </div>
-       <form onSubmit={(e)=>e.preventDefault()} className='w-[370px] absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-85 mt-[100px]'>
+       <form onSubmit={(e)=>e.preventDefault()} className='w-[370px] absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-85 mt-[73px]'>
        <h1 className='font-bold text-2xl py-4'>{IsSignInForm?"Sign In":"Sign Up"}</h1>
        {!IsSignInForm && (
         <input type="text" placeholder="Full Name" className='p-4 my-2 w-full bg-transparent border'/>
