@@ -9,7 +9,7 @@ const VideoBackground = ({movieId}) => {
    const trailerVideo=useSelector(store=>store.movies?.trailerVideo);
     useMovieTrailer(movieId);
    //fetch trailer video is updating the store with trailer
-
+    
  
   return (
     <div className='w-screen' >
