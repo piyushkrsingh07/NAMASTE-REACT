@@ -16,14 +16,16 @@ const useMovieTrailer=(movieId)=>{
     
 
 
-    // const getMovieVideos=async()=>{
-    //     const data=await fetch('https://api.themoviedb.org/3/movie/' +
-    //         movieId +
-    //         '/videos?language=en-US',API_OPTIONS)
-    //     // const data=await fetch('https://api.themoviedb.org/3/movie/912649/videos?language=en-US',API_OPTIONS)
-    //     //phle movieid hard coded tha
-    //     const json=await data.json();
-    //     console.log(json)
+
+    const getMovieVideos=async()=>{
+        const data=await fetch('https://api.themoviedb.org/3/movie/' +
+            movieId +
+            '/videos?language=en-US',API_OPTIONS)
+        // const data=await fetch('https://api.themoviedb.org/3/movie/912649/videos?language=en-US',API_OPTIONS)
+        //phle movieid hard coded tha
+        const json=await data.json();
+        console.log(json,"dekho trailer data")
+
 
     //     const filterData=json.results.filter(video=>video.type === "Trailer")
        

@@ -8,8 +8,9 @@ const MainContainer = () => {
     if(!movies) return;
 
     const mainMovie=movies[0];
-    console.log("dekho main movie");
-    console.log(mainMovie)
+
+    console.log(mainMovie,"see main movie")
+
 
     const{original_title,overview,id}=mainMovie
   return (
