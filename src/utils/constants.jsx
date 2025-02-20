@@ -4,6 +4,8 @@ export const LOGO=
 export const USER_AVATAR=
 "https://ucarecdn.com/8f16c3ed-dee6-4910-bb19-ec5929d78711/-/preview/100x125/"
 
+export const IMAGE_URL="https://image.tmdb.org/t/p/w500"
+
 export const API_OPTIONS = {
     
         method: 'GET',
